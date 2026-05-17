@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجري - اشتري بسهولة</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background: linear-gradient(135deg, #f5f7fa, #c3cfe2); margin: 0; padding: 20px; color: #333; }
+    h1 { text-align: center; color: #222; margin-bottom: 30px; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1300px; margin: 0 auto; }
+    .product { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
+    .product:hover { transform: translateY(-12px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+    .product img { width: 100%; height: 220px; object-fit: cover; }
+    .info { padding: 18px; }
+    .price { font-size: 1.5em; color: #e91e63; font-weight: bold; margin: 10px 0; }
+    .buy-btn { width: 100%; padding: 14px; background: #25D366; color: white; border: none; border-radius: 10px; font-size: 1.1em; cursor: pointer; }
+    .buy-btn:hover { background: #20b858; }
+  </style>
+</head>
+<body>
+  <h1>🛍️ متجري - منتجات مميزة</h1>
+  <div class="products" id="products"></div>
+
+  <script>
+    const products = [
+      { name: "سماعات بلوتوث عالية الجودة", price: "450", img: "https://picsum.photos/id/20/800/600", desc: "صوت نقي - بطارية طويلة - ضمان سنة" },
+      { name: "استشوار شعر احترافي", price: "320", img: "https://picsum.photos/id/201/800/600", desc: "1800 وات - متعدد السرعات" },
+      { name: "تيشيرت قطن ناعم", price: "180", img: "https://picsum.photos/id/64/800/600", desc: "مقاسات: M - L - XL" },
+      { name: "بنطلون جينز مريح", price: "280", img: "https://picsum.photos/id/251/800/600", desc: "خامة ممتازة" }
+    ];
+
+    const container = document.getElementById('products');
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product';
+      card.innerHTML = `
+        <img src="${product.img}" alt="${product.name}">
+        <div class="info">
+          <h3>${product.name}</h3>
+          <p>${product.desc}</p>
+          <div class="price">${product.price} جنيه</div>
+          <button class="buy-btn" onclick="buy('${product.name}', ${product.price})">🛒 اشتري الآن</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    function buy(name, price) {
+      const message = `السلام عليكم، عايز اشتري ${name} بسعر ${price} جنيه`;
+      const phone = "201037469743";
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
